@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,6 +30,13 @@ public class MainActivity extends AppCompatActivity {
         });
         TextView tvHello= findViewById(R.id.tvHello);
         tvHello.setText("Charity Notepad");
+        Button btnViewNote = findViewById(R.id.btnViewNote);
+        btnViewNote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getBaseContext(),ViewNote.class));
+            }
+        });
     }
 
     @Override
