@@ -6,10 +6,14 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.myapp.Database.DatabaseHelper;
+import com.example.myapp.Database.Note;
 
 public class AddNoteActivity extends AppCompatActivity {
     EditText etTitle;
@@ -17,7 +21,7 @@ public class AddNoteActivity extends AppCompatActivity {
     Button btnAddPhoto;
     Button btnAddVoiceNote;
     Button btnSave;
-    String note;
+    String noteText;
     String title;
 
     @Override
@@ -39,7 +43,11 @@ public class AddNoteActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
               title =etTitle.getText().toString();
-              note=etNote.getText().toString();
+              noteText=etNote.getText().toString();
+                Note note=new Note(title,noteText);
+                DatabaseHelper databaseHelper= new DatabaseHelper(getBaseContext(),"note",null,1);
+                long rows=databaseHelper.addNote(note);
+               Log.d("AddNote","number of your note is "+ rows);
 
 
             }
